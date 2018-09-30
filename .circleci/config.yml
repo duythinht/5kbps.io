@@ -19,5 +19,5 @@ jobs:
           working_directory: blog
       - run:
           name: deploy
-          command: ls && source .circleci/ghp_deploy.sh
+          command: ls && source .circleci/_script/ghp_deploy.sh
           working_directory: blog
