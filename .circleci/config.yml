@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  publish_5kbps:
+    docker:
+      - image: ubuntu:18.04
+    environment:
+      HUGO_VERSION: 0.49
+      WHO_AM_I: >
+        email: duythinht@gmail.com
+        name: Thinh "Aldof" Tran
+    steps:
+      - checkout
+      - run:
+          name: Install hugo
+          command: apt-get update && apt-get install -y git curl
+      - run:
+          name: Download hugo
+          command: mkdir -p bin && curl -L https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz -o bin/hugo.tar.gz && tar xzvvf bin/hugo.tar.gz -C ./bin
+      - run:
+          name: Print my info
+          command: echo $WHO_AM_I
+      - run:
+          name: Build hugo
+          command: ../bin/hugo
+          working_directory: blog
+      - run:
+          name: deploy
+          command: ls && source ../.circleci/_script/ghp_deploy.sh
+          working_directory: blog
+  build_dm:
+    docker:
+    - image: golang:1.12.9
+    steps:
+      - checkout
+      - run: go get gopkg.in/yaml.v2
+      - run: go get github.com/spf13/cobra
+      - run: go get github.com/tcnksm/ghr
+      - run:
+          name: create go.5kbps.io
+          command: mkdir -p $GOPATH/src/go.5kbps.io
+      - run:
+          name: Copy source tree
+          command: cp -rf dm $GOPATH/src/go.5kbps.io
+      - run:
+          name: Build dm
+          command: go build -o ./dist/dm go.5kbps.io/dm
+      - run:
+          name: publish release to github
+          command: |
+            VERSION=$(./dist/dm --version | awk '{ print $3 }')
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/dm
+
+workflows:
+  version: 2
+  publish_5kbps:
+    jobs:
+      - publish_5kbps
+  build_dm:
+    jobs:
+      - build_dm
