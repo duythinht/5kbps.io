@@ -15,9 +15,9 @@ jobs:
           command: mkdir -p bin && curl -L https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz -o bin/hugo.tar.gz && tar xzvvf bin/hugo.tar.gz -C ./bin
       - run:
           name: Build hugo
-          command: ./bin/hugo
+          command: ../bin/hugo
           working_directory: blog
       - run:
           name: deploy
-          command: ls && source .circleci/_script/ghp_deploy.sh
+          command: ls && source ../.circleci/_script/ghp_deploy.sh
           working_directory: blog
