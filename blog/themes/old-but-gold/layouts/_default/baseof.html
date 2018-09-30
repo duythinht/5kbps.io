@@ -1,0 +1,15 @@
+{{ partial "head" . }}
+<body>
+    <div class="main">
+        <div class="container">
+            {{ partial "header" . }}
+            <div class="content">
+                {{ block "main" . }}
+                <!-- The part of the page that begins to differ between templates -->
+                {{- end -}}
+            </div>
+        </div>
+        {{ partial "footer" . }}
+    </div>
+</body>
+</html>

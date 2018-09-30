@@ -1,0 +1,47 @@
+baseURL = "https://5kbps.io/"
+languageCode = "en-us"
+title = "5 Kilobytes per Second - Thinh Tran"
+theme = "old-but-gold" # set the theme
+paginate = 10
+canonifyurls = true
+googleAnalytics = "UA-118367540-1"
+disqusShortname = "5kbps"
+
+
+[params]
+	title = "5kbps.io"
+	subtitle = "Mạng nhà tôi lúc nhanh lúc chậm, internet lúc có lúc không, nên tôi chẳng viết bài thường xuyên."
+	copyright = "Released under the MIT license."
+
+	# You can choose between green, orange, red and blue.
+	themecolor = "green"
+
+	# Link custom assets relative to /static
+	favicon   = "favicon.ico"
+
+	# To provide some metadata for search engines and the about section in the footer
+	# feel free to add a few information about you and your website.
+	name = "Thinh Tran"
+	bio = "Coder, Biker and Photographer"
+	description = "The blog of epic story about slowly internet connection."
+	
+	# Link your social networks (optional)
+	location = ""
+	twitter = "duythinht"
+	linkedin = ""
+	googleplus = ""
+	facebook = "duythinht"
+	instagram = "duythinht"
+	github = "duythinht"
+	gitlab = ""
+	bitbucket = ""
+
+	# Customize or translate the strings
+	keepReadingStr = "Keep reading"
+	backtotopStr = "Back to top"
+	shareStr = "Share"
+	pageNotFoundTitle = "404 - Page not found"
+
+    #app
+    facebookApp = 633130997025507
+

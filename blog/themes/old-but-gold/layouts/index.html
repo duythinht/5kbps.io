@@ -1,0 +1,9 @@
+{{ define "main" }}
+    {{- $paginator := .Paginate .Data.Pages.ByDate.Reverse -}}
+    {{- range $paginator.Pages -}}
+        {{- if not .Params.hide -}}
+            {{ partial "summary" . }}
+        {{- end -}}
+    {{- end -}}
+    {{ template "_internal/pagination.html" . }}
+{{ end }}
