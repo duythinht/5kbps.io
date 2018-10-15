@@ -1,0 +1,9 @@
+name: test
+email: duythinht@gmail.com
+env:
+- name: MYSQL_HOST
+  value: localhost
+- name: MYSQL_PASSWORD
+  value: go.5kbps.io/sec[06wtX8EHH5p1wvlcl1xkvnz5Oh5EKxumQMHKEMT8xtcQ]
+- name: MYSQL_USER
+  value: root

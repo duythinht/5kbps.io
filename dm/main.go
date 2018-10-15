@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/spf13/cobra"
 	"go.5kbps.io/dm/cmd"
 )
@@ -12,7 +14,15 @@ func main() {
 		Long:  "This tool just be made for my work, that make deploy helm charts more efficient and avoid human's mistake",
 	}
 
-	dm.AddCommand(cmd.AppCommand)
+	completion := &cobra.Command{
+		Use:   "completion",
+		Short: "Output shell completion code",
+		Run: func(cmd *cobra.Command, args []string) {
+			dm.GenZshCompletion(os.Stdout)
+		},
+	}
+
+	dm.AddCommand(completion, cmd.AppCommand, cmd.VaultCommand)
 
 	_ = dm.Execute()
 }
