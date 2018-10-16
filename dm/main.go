@@ -18,7 +18,7 @@ func main() {
 		Use:   "completion",
 		Short: "Output shell completion code",
 		Run: func(cmd *cobra.Command, args []string) {
-			dm.GenZshCompletion(os.Stdout)
+			dm.GenBashCompletion(os.Stdout)
 		},
 	}
 
