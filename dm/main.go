@@ -14,6 +14,8 @@ func main() {
 		Long:  "This tool just be made for my work, that make deploy helm charts more efficient and avoid human's mistake",
 	}
 
+	dm.Version = "0.1.0-alpha"
+
 	completion := &cobra.Command{
 		Use:   "completion",
 		Short: "Output shell completion code",

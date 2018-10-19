@@ -28,6 +28,7 @@ jobs:
       - checkout
       - run: go get gopkg.in/yaml.v2
       - run: go get github.com/spf13/cobra
+      - run: go get github.com/tcnksm/ghr
       - run:
           name: create go.5kbps.io
           command: mkdir -p $GOPATH/src/go.5kbps.io
@@ -37,6 +38,11 @@ jobs:
       - run:
           name: Build dm
           command: go build -o ./dist/dm go.5kbps.io/dm
+      - run:
+          name: publish release to github
+          command: |
+            VERSION=$(./dist/dm --version | awk '{ print $3 }')
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/dm
 
 workflows:
   version: 2
