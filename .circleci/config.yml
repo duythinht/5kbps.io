@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  publish_blog:
     docker:
       - image: ubuntu:18.04
     environment:
@@ -21,3 +21,22 @@ jobs:
           name: deploy
           command: ls && source ../.circleci/_script/ghp_deploy.sh
           working_directory: blog
+  build_dm:
+    docker:
+    - image: golang:1.11.0
+    environment:
+      HUGO_VERSION: 0.49
+    steps:
+      - checkout
+      - run:
+          name: Install hugo
+          command: go get github.com/spf13/cobra
+      - run:
+          name: create go.5kbps.io
+          command: mkdir -p $GOPATH/src/go.5kbps.io
+      - run:
+          name: Copy source tree
+          command: cp -rf dm $GOPATH/src/go.5kbps.io
+      - run:
+          name: Build dm
+          command: go build -o ./dist/dm go.5kbps.io/dm
