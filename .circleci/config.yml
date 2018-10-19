@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 jobs:
   publish_5kbps:
     docker:
@@ -24,8 +24,6 @@ jobs:
   build_dm:
     docker:
     - image: golang:1.11.0
-    environment:
-      HUGO_VERSION: 0.49
     steps:
       - checkout
       - run:
@@ -42,7 +40,7 @@ jobs:
           command: go build -o ./dist/dm go.5kbps.io/dm
 
 workflows:
-  version: 2.1
+  version: 2
   publish_5kbps:
     jobs:
       - publish_5kbps
