@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  publish_blog:
+  publish_5kbps:
     docker:
       - image: ubuntu:18.04
     environment:
@@ -40,3 +40,12 @@ jobs:
       - run:
           name: Build dm
           command: go build -o ./dist/dm go.5kbps.io/dm
+
+workflows:
+  version: 2.1
+  publish_5kbps:
+    jobs:
+      - publish_5kbps
+  build_dm:
+    jobs:
+      - build_dm
