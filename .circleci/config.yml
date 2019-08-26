@@ -17,6 +17,9 @@ jobs:
           name: Download hugo
           command: mkdir -p bin && curl -L https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz -o bin/hugo.tar.gz && tar xzvvf bin/hugo.tar.gz -C ./bin
       - run:
+          name: Print my info
+          command: echo $WHO_AM_I
+      - run:
           name: Build hugo
           command: ../bin/hugo
           working_directory: blog
