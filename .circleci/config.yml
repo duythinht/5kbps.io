@@ -29,7 +29,7 @@ jobs:
           working_directory: blog
   build_dm:
     docker:
-    - image: golang:1.11.0
+    - image: golang:1.12.9
     steps:
       - checkout
       - run: go get gopkg.in/yaml.v2
