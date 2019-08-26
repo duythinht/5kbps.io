@@ -5,6 +5,9 @@ jobs:
       - image: ubuntu:18.04
     environment:
       HUGO_VERSION: 0.49
+      WHO_AM_I: >
+        email: duythinht@gmail.com
+        name: Thinh "Aldof" Tran
     steps:
       - checkout
       - run:
